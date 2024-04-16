@@ -42,7 +42,7 @@ reviewToBeEdited: Review | null = null;
   this.loggedIn = this.reviewService.isLoggedIn();
   this.id = this.reviewService.getUser();
   this.username = this.authService.getUserName();
-  console.log('akiii'+this.username);
+  console.log('akiii'+this.id);
   this.reviewService.getReviews(this.id).subscribe(reviews => {
     
     this.reviews=reviews;

@@ -1,0 +1,96 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's noti" aria-describedby="basic-addon2" [(ngModel)]="searchBar">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" (click)="searchForNoti()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    
+                    @if(searchNotiMode==true && searchedNoti && editMode==false && createMode==false){
+                        <div>
+                            <h1>Noti Details</h1>
+                            <p>ID: {{searchedNoti._id}}</p>
+                            <p>Content: {{searchedNoti.content}}</p>
+                            <p>E-mail: {{searchedNoti.importancia}}</p>
+                            <p>Para: {{searchedNoti.user}}</p>
+                            
+                            
+                            
+                            <button class="btn btn-primary" type="button" (click)="backToNotiList()">Back</button>
+                            <span style="margin-right: 10px;"></span>
+                            
+                            <button class="btn btn-primary" type="button" (click)="deleteNoti()">Delete Noti</button>
+                        </div>
+                    }@else if (searchNotiMode==true && searchedNoti==null){
+                        <h1>Noti not found</h1>
+                        <button class="btn btn-primary" type="button" (click)="backToNotiList()">Back</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <section>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <!-- Display list of reviews -->
+                    <div>
+                        @if(notiSelected==false && createMode==false && searchNotiMode==false  && loggedIn==true){
+                            <h1>Your Notifications:</h1>
+                            <ul style="list-style: none; padding: 0;"> 
+                            @for(notificacion of notificaciones; track notificacion._id)
+                            {
+                                <li style="padding:5px">
+                                    <button class="btn btn-primary" type="button" (click)="onSelectNoti(notificacion)">
+                                        <span class="content">{{notificacion.content}}</span>
+                                        <span class="importancia">{{notificacion.importancia}}</span>
+                                    </button>
+                                </li>
+                            }
+                            </ul>
+                            <div style="padding:10px" > 
+                                <button class="btn btn-primary" type="button" (click)="createReviewBtn()">Create new user</button>
+                            </div>
+                        }
+                        @else if(notiSelected==false && createMode==false && searchNotiMode==false && editMode==false && loggedIn==false){
+                            <h2>Tienes que iniciar sesión para ver tus reviews.</h2>
+                        }
+                    </div>
+                </div>
+                
+             </div>
+            
+        </div>
+        <div class="col-md-auto">
+            
+            @if(selectedNoti && searchNotiMode==false && createMode==false  ){
+                <div>
+                    <h1>Notificacion:</h1>
+                    <p>ID: {{selectedNoti._id}}</p>
+                    <p>Content: {{selectedNoti.content}}</p>
+                    <p>Importancia: {{selectedNoti.importancia}}</p>
+                    <p>Para: {{selectedNoti.user}}</p>
+                    
+                    
+                    <button class="btn btn-primary" type="button" (click)="backToNotiList()">Back</button>
+                    <span style="margin-right: 10px;"></span>
+                    <button class="btn btn-primary" type="button" (click)="deleteNoti()">Delete Noti</button>
+              </div>
+            }
+        </div>
+                
+    </section>
+
+    
+</section>

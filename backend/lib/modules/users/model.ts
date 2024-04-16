@@ -21,6 +21,7 @@ export interface IUser {
     role: string;
     address?:string;
     housing_offered?:mongoose.Types.ObjectId[];
+    notificaciones?: mongoose.Types.ObjectId[];
     emergency_contact?: {
         full_name: string;
         telephone: string;
