@@ -1,0 +1,120 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="input-group mb-3">
+                    <input type="text"  style="padding:6px" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="searchBar">
+                    <!-- <label for="searchOption" style="padding:10px">Filtro:</label> -->
+                    <select id="searchOption"  style="margin-right:10px"[(ngModel)]="selectedOption">
+                      <option value="author">Author</option>
+                      <option value="place">Place</option>
+                      <option value="housing">Housing</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" style="padding:6px" type="button" (click)="searchForReview()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <section>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    Display selected user details 
+                    @if(searchUserMode==true && searchedUser && editMode==false && createMode==false){
+                        <div>
+                            <h1>User Details</h1>
+                            <p>ID: {{searchedUser._id}}</p>
+                            <p>Full Name: {{searchedUser.first_name}} {{searchedUser.middle_name}} {{searchedUser.last_name}}</p>
+                            <p>E-mail: {{searchedUser.email}}</p>
+                            <p>Phone Number: {{searchedUser.phone_number}}</p>
+                            <p>Gender: {{searchedUser.gender}}</p>
+                            <p>User Rating: {{searchedUser.user_rating}}</p>
+                            <p>Photo: {{searchedUser.photo}}</p>
+                            <p>Description: {{searchedUser.description}}</p>
+                            <p>DNI: {{searchedUser.dni}}</p>
+                            <p>Personality: {{searchedUser.personality}}</p>
+                            <p>Password: {{searchedUser.password}}</p>
+                            <p>Birthday: {{searchedUser.birth_date}}</p>
+                            <p>Adress: {{searchedUser.address}}</p>
+                            <p>Emergency Contact: {{searchedUser.emergency_contact?.full_name}}</p>
+                            <p>Emergency Contact Phone: {{searchedUser.emergency_contact?.telephone}}</p>
+                            @if(searchedUser.user_deactivated==true){
+                                <p>User Status: Deactivated</p>
+                            }@else{
+                                <p>User Status: Active</p>
+                            }
+                            <p>Creation Date: {{searchedUser.creation_date}}</p>
+                            <p>Last Modified: {{searchedUser.modified_date}}</p>
+                            <button class="btn btn-primary" type="button" (click)="backToUserList()">Back</button>
+                            <span style="margin-right: 10px;"></span>
+                            <button class="btn btn-primary" type="button" (click)="editUserMode()">Edit User</button>
+                            <span style="margin-right: 10px;"></span>
+                            <button class="btn btn-primary" type="button" (click)="deactivateUser()">Deactivate User</button>
+                        </div>
+                    }@else if (searchUserMode==true && searchedUser==null){
+                        <h1>User not found</h1>
+                        <button class="btn btn-primary" type="button" (click)="backToUserList()">Back</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <!-- Display list of reviews -->
+                    <div>
+                        @if(reviewSelected==false && createMode==false && searchReviewMode==false && editMode==false && loggedIn==true){
+                            <h1>Your Reviews:</h1>
+                            <ul style="list-style: none; padding: 0;"> 
+                            @for(review of reviews; track review._id)
+                            {
+                                <li style="padding:5px">
+                                    <button class="btn btn-primary" type="button" (click)="onSelectReview(review)">
+                                        <span class="title">{{review.title}}</span>
+                                        <span class="author">{{this.username}}</span>
+                                    </button>
+                                </li>
+                            }
+                            </ul>
+                            <div style="padding:10px" > 
+                                <button class="btn btn-primary" type="button" (click)="createReviewBtn()">Create new user</button>
+                            </div>
+                        }
+                        @else if(reviewSelected==false && createMode==false && searchReviewMode==false && editMode==false && loggedIn==false){
+                            <h2>Tienes que iniciar sesión para ver tus reviews.</h2>
+                        }
+                    </div>
+                </div>
+                
+             </div>
+            
+        </div>
+        <div class="col-md-auto">
+            <!-- Display selected user details -->
+            @if(selectedReview && searchReviewMode==false && createMode==false  && editMode==false){
+                <div>
+                    <h1>Review Details</h1>
+                    <p>ID: {{selectedReview._id}}</p>
+                    <p>Title: {{selectedReview.title}}</p>
+                    <p>Content: {{selectedReview.content}}</p>
+                    <p>Stars: {{selectedReview.stars}}</p>
+                    <p>Author: {{username}}</p>
+                    
+                    <button class="btn btn-primary" type="button" (click)="backToReviewList()">Back</button>
+                    <span style="margin-right: 10px;"></span>
+                    <!-- <button class="btn btn-primary" type="button" (click)="editReviewMode()">Edit User</button>
+                    <span style="margin-right: 10px;"></span>
+                    <button class="btn btn-primary" type="button" (click)="deactivateReview()">Deactivate User</button> -->
+                </div>
+            }
+        </div>
+                
+    </section>
+
+    
+</section>
